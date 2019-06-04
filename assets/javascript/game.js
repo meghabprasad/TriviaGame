@@ -28,11 +28,14 @@ window.onload = function() {
         //("#questions").empty(); 
         if (isClockRunning === false) {
             intervalId = setInterval(decrement, 1000);
-            showQuestion()
+            showQuestion();
             isClockRunning = true;
         }
     
     }//ends start function
+    function restart(){
+        number = 100;
+    }
 
     function showQuestion(){
         // step one
@@ -66,6 +69,14 @@ window.onload = function() {
                 questionDiv.append(checkbox);    
             }
             $("#main-content").append(questionDiv);
+            $(".options").on("click", function(){
+                if ($(this).attr("data-correct") === "t"){
+                    $(".questions").text("Awesome!");
+                }
+                else {
+                    $(".questions").text("Wrong!");
+                } 
+            })
             questionCount++;
             console.log(questionCount);
         }else{
