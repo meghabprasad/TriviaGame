@@ -15,7 +15,8 @@ window.onload = function() {
     var questionAnswer = [
         {
             question: "What is Dwight's last name?",
-            possibleAnswers: [{a: "angel", v: "f"},{a: "Shroot", v: "t"}]
+            possibleAnswers: [{a: "Angel", v: "f"},{a: "Shrute", v: "t"}],
+            correctAnswer: "Shrute"
         },
         {
             question: "What is Jim's last name?",
@@ -30,13 +31,11 @@ window.onload = function() {
             showQuestion()
             isClockRunning = true;
         }
-    //     $("#questions").append("<p>Which of the following vegetables is not one of the ingredients of V-8 juice?</p>");
-    //     $("#questions").append(
-    //         '<div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"><label class="form-check-label" for="inlineCheckbox1">Cabbage</label></div>');
+    
     }//ends start function
 
     function showQuestion(){
-        // stepo one
+        // step one
             // check to see if questionCounter is < the questionAnswer array length
             // if it is
                 //make a variuable call questionDiv
@@ -46,17 +45,33 @@ window.onload = function() {
                 // append the questionDiv to the demo element with the id of main-content
             // if it is not then 
                 //add up score and tell use game is over. 
-    }
-        function newFunction() {
-            and;
-            append;
-            it;
-            to;
-            the;
-            dom;
-            where;
-            the;
-        }
+        if (questionCount < questionAnswer.length){
+            var questionDiv = $('<div class = "questions">'); 
+            var questionAnswerPair = questionAnswer[questionCount];
+            var question = questionAnswerPair.question;
+            console.log(question)
+            var questionH1 = $('<h1>');
+            questionH1.text("Quesion: " + question);
+            questionDiv.append(questionH1)
+            
+            var answersArray = questionAnswerPair.possibleAnswers;
+            console.log(answersArray);
+
+            for (var i=0; i < answersArray.length; i++){
+                console.log(answersArray[i].v);
+                console.log(answersArray[i].a);
+                label = answersArray[i].a;
+                var checkbox = $('<button class="options">'+label+'</button>');
+                checkbox.attr("data-correct", answersArray[i].v)
+                questionDiv.append(checkbox);    
+            }
+            $("#main-content").append(questionDiv);
+            questionCount++;
+            console.log(questionCount);
+        }else{
+            score++;
+            alert("game over!");
+        }        
     }
 
     function decrement(){
@@ -81,7 +96,7 @@ window.onload = function() {
         // $("#questions").append("<button>China</button> <button>US</button> <button>Ireland</button> <button>Russia</button> ");
         // $("#questions").append("<p>According to a 1980s Beverage Media poll of four hundred bartenders, what was the female customers favorite drink?</p>");
         // $("#questions").append("<button>Beer</button> <button>Margarita</button> <button>White Wine</button> <button>Pina Colada</button> ");
-
+}
   
 
 
@@ -90,7 +105,7 @@ window.onload = function() {
 
 
 
-};
+
  
 
 
