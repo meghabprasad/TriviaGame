@@ -50,20 +50,21 @@ window.onload = function() {
             $("#show-time").html(number);
     
             if (number === 0) {
-            $(".questions").append("Time up! Next question!") 
-            questionCount++;       
+            $(".questions").append('<div style = "color: blue">Time up! Next question!</div>') 
+            questionCount++; 
+            wrong++      
             restart();   
             } 
         } 
         function restart(){
             clearInterval(intervalId);
             isClockRunning = false;
-            number=10;
+            number=11;
             var intervalIdQuestion = setTimeout(start, 2000);
         }
         function stop(){
+            $(".questions").empty();
             clearInterval(intervalId);
-            isClockRunning = false;
         } 
         function showQuestion(){
             $(".questions").empty();
@@ -129,8 +130,11 @@ window.onload = function() {
                 })
                 console.log("questionCount: "+questionCount);
             }else{
-                stop();
+                questionCount = 0;
+                restart();
                 $(".questions").append("Game Over");
+                $(".questions").append("<br>"+"Number of Correct Answers: "+correct);
+                $(".questions").append("<br>"+"Number of Wrong Answers: "+wrong);
             }        
         }
         function showAnswer (){

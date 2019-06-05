@@ -3,12 +3,18 @@
     background-repeat: no-repeat;
     background-size: 100%;
 }
-.display-4{
+/* .display-4{
+    font-family: 'Righteous';
     font-weight: bold;
-}
+} */
 
 .container{
     opacity: 0.8;
     background-color:white;
     border-radius: 20px;
+    font-family: 'Righteous';
+    font-weight: bold;
+}
+#start{
+    margin-bottom: 10px;
 }
