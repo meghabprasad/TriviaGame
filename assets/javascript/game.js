@@ -9,16 +9,31 @@ window.onload = function() {
         var correct = 0;
         var wrong = 0;
         var questionDiv = $('<div class = "questions">'); 
+        var responseDiv = $('<div id = "response">');
+        
+
 
         var questionAnswer = [
             {
-                question: "What is Dwight's last name?",
-                possibleAnswers: [{a: "Angel", v: "f"},{a: "Shrute", v: "t"}],
+                question: "What is the name of Ryan's social networking venture?",
+                possibleAnswers: [{a: "RUFPH.COM", v: "f"},{a: "BARQ.COM", v: "f"},{a: "WUPHF.COM", v: "t"},{a: "ARPHF.COM", v: "f"}],
                 correctAnswer: "Shrute"
             },
             {
-                question: "What is Jim's last name?",
-                possibleAnswers: [{a: "Scott", v: "f"},{a: "Halpert", v: "t"}]
+                question: "Which of the following was NOT included in the teapot Jim gave Pam at the office Christmas party?",
+                possibleAnswers: [{a: "Hot sauce packet", v: "f"},{a: "Golf pencil", v: "f"},{a: "Jim's yearbook picture", v: "f"},{a: "Baseball card", v: "t"}],
+            },
+            {
+                question: "What is the number Kevin invents to compensate for his accounting errors?",
+                possibleAnswers: [{a: "Thirtween", v: "f"},{a: "Dundereight", v: "f"},{a: "Slevin", v: "f"},{a: "Keleven", v: "t"}],
+            },
+            {
+                question: "Dwight Schrute plays which of the following musical instruments?",
+                possibleAnswers: [{a: "Recorder", v: "f"},{a: "Harpsichord", v: "f"},{a: "Piano", v: "f"},{a: "Banjo", v: "t"}],
+            },
+            {
+                question: "Which Dunder Mifflin salesman did Pam date before Jim?",
+                possibleAnswers: [{a: "Clark Green", v: "f"},{a: "Andy Bernard", v: "f"},{a: "Jim Holland", v: "f"},{a: "Roy", v: "t"}],
             }
         ]
         function start() {
@@ -82,34 +97,42 @@ window.onload = function() {
                     checkbox.attr("data-correct", answersArray[i].v)
                     questionDiv.append(checkbox);    
                 }
-                $("#main-content").append(questionDiv);
                 
-                $(".options").on("click", function(){
-                    var response = $('<div id="response">');    
+                $("#main-content").append(questionDiv);
+                $(".options").on("click", function(){ 
+                    
                 if ($(this).attr("data-correct") === "t"){
+                    showAnswer();
                         $("#response").append("<br>"+"Awesome!");
                         correct++;
                         console.log("numCorrect: "+correct);
                         console.log("numWrong: "+wrong);
-                        response.append("<br>"+correct); 
-                        $(".questions").append(response);   
+                        $("#response").append("<br>"+correct); 
+                          
                     }
                     else if ($(this).attr("data-correct") === "f"){
-                        response.append("<br>"+"Wrong!");
+                        showAnswer();
+                        $("#response").append("<br>"+"Wrong!");
                         wrong++;
                         console.log("numCorrect: "+correct);
                         console.log("numWrong: "+wrong);
-                        response.append("<br>"+wrong);
-                        $(".questions").append(response);   
+                        $("#response").append("<br>"+wrong);
+                          
                     }
+                    questionDiv.append(responseDiv);
+                    $("#main-content").append(questionDiv);
                     questionCount++;
                     restart();
                 })
                 console.log("questionCount: "+questionCount);
             }else{
+                showAnswer();
                 stop();
-                $(".questions").append("Game over");
+                $("#response").append("Game Over");
             }        
+        }
+        function showAnswer (){
+            $("#response").append("RESPONSEEEE");
         }
         
         start();
