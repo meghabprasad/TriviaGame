@@ -1,6 +1,6 @@
 window.onload = function() { 
     $("#start").on("click", function () {
-        var number = 10;
+        var number = 11;
         var intervalId;
         var intervalIdQuestion;
         var isClockRunning = false;
@@ -59,7 +59,7 @@ window.onload = function() {
             clearInterval(intervalId);
             isClockRunning = false;
             number=10;
-            start();
+            var intervalIdQuestion = setTimeout(start, 2000);
         }
         function stop(){
             clearInterval(intervalId);
@@ -93,30 +93,33 @@ window.onload = function() {
                     console.log(answersArray[i].v);
                     console.log(answersArray[i].a);
                     label = answersArray[i].a;
-                    var checkbox = $('<button class="options">'+label+'</button>');
+                    var checkbox = $('<button type="button" class="btn btn-primary '+answersArray[i].v+'+">'+label+'</button>'+'<br><br>');
+                    
                     checkbox.attr("data-correct", answersArray[i].v)
+                    
                     questionDiv.append(checkbox);    
                 }
                 
                 $("#main-content").append(questionDiv);
-                $(".options").on("click", function(){ 
+                $(".btn").on("click", function(){ 
                     
                 if ($(this).attr("data-correct") === "t"){
-                    showAnswer();
-                        $("#response").append("<br>"+"Awesome!");
+                        $(this).attr("class", "btn btn-success");
+                        //$("#response").append("<br>"+"Awesome!");
                         correct++;
                         console.log("numCorrect: "+correct);
                         console.log("numWrong: "+wrong);
-                        $("#response").append("<br>"+correct); 
+                        //$("#response").append("<br>"+correct); 
                           
                     }
                     else if ($(this).attr("data-correct") === "f"){
-                        showAnswer();
-                        $("#response").append("<br>"+"Wrong!");
+                        $(this).attr("class", "btn btn-danger");
+                        $(".t").attr("class", "btn btn-succes t");
+                        //$("#response").append("<br>"+"Wrong!");
                         wrong++;
                         console.log("numCorrect: "+correct);
                         console.log("numWrong: "+wrong);
-                        $("#response").append("<br>"+wrong);
+                        //$("#response").append("<br>"+wrong);
                           
                     }
                     questionDiv.append(responseDiv);
@@ -126,7 +129,7 @@ window.onload = function() {
                 })
                 console.log("questionCount: "+questionCount);
             }else{
-                showAnswer();
+               
                 stop();
                 $("#response").append("Game Over");
             }        
