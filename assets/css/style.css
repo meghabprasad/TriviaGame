@@ -7,7 +7,11 @@
     font-family: 'Righteous';
     font-weight: bold;
 } */
-
+embed{
+    background: none;
+    width: 300px;
+    height: 0px;
+}
 .container{
     opacity: 0.8;
     background-color:white;

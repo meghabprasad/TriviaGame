@@ -1,5 +1,6 @@
 window.onload = function() { 
     $("#start").on("click", function () {
+        $(".questions").empty();
         var number = 11;
         var intervalId;
         var intervalIdQuestion;
