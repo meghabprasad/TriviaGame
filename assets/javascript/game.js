@@ -129,9 +129,8 @@ window.onload = function() {
                 })
                 console.log("questionCount: "+questionCount);
             }else{
-               
                 stop();
-                $("#response").append("Game Over");
+                $(".questions").append("Game Over");
             }        
         }
         function showAnswer (){

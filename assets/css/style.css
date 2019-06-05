@@ -1,0 +1,14 @@
+.jumbotron{
+    background-image: url("../images/office-background-image.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.display-4{
+    font-weight: bold;
+}
+
+.container{
+    opacity: 0.8;
+    background-color:white;
+    border-radius: 20px;
+}
